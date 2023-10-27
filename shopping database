@@ -1,0 +1,63 @@
+CREATE TABLE customer(
+    customer_id INT(3),
+    customer_fname VARCHAR(20),
+    customer_lname VARCHAR(20),
+    customer_gender CHAR(1),
+    customer_tel VARCHAR(20),
+    customer_email VARCHAR(30),
+    customer_dateJoined DATE,
+    address_id INT(3),
+
+    PRIMARY KEY(customer_id),
+    INDEX(customer_id),
+    FOREIGN KEY(customer_id)  REFERENCES address);
+
+
+CREATE TABLE address(
+    adress_id INT(3),
+    customer_street VARCHAR(30),
+    customer_town VARCHAR(30),
+    customer_postcode CHAR(7),
+
+    PRIMARY KEY(address_id),
+    INDEX(address_id),
+    FOREIGN KEY(address_id)  REFERENCES customer(address_id),
+    FOREIGN KEY(address_id) REFERENCES employee(address_id));
+
+
+CREATE TABLE product(
+    product_id INT(5),
+    product_name VARCHAR(20),
+    product_season VARCHAR(15),
+    product_price NUMERIC(4,2), 
+    product_origin VARCHAR(15),
+    product_type VARCHAR(15),
+    product_inStock BOOLEAN,
+
+    PRIMARY KEY(product_id),
+    INDEX(product_id));
+
+
+CREATE TABLE orders(
+    order_id INT(3),
+    customer_id INT(3),
+    employee_id INT(3),
+    product_name VARCHAR(20),
+    quantity INT(4),
+    order_date TIMESTAMP,
+
+    PRIMARY KEY(order_id),
+    INDEX(order_id));
+
+
+CREATE TABLE employee(
+    employee_id INT(3),
+    employee_fname VARCHAR(20),
+    employee_lname VARCHAR(20),
+    address_id INT (3),
+    employee_pay NUMERIC(2,2),
+    employee_daysOff INT(2),
+    employee_hoursWorked INT(3),
+
+    PRIMARY KEY(staff_id),
+    INDEX(staff_id));
